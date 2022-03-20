@@ -35,14 +35,14 @@ export class Post extends Model<Post, PostCreationAttrs> {
   title: string;
 
   @ApiProperty({
-    example: 'Some text',
-    description: 'The content of the post',
+    example: 'Content of the post',
+    description: 'Content of the post, including the markup.',
   })
   @Column({ type: DataType.TEXT, allowNull: false })
   content: string;
 
   @ApiProperty({
-    example: 'http://example.com/image.png',
+    example: 'http://example.com/image.jpg',
     description: 'The image of the post',
   })
   @Column({ type: DataType.STRING, allowNull: true })
