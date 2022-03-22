@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, DataType, Model } from 'sequelize-typescript';
+import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
 interface DogCreationAttrs {
   name: string;
@@ -14,6 +14,7 @@ interface DogCreationAttrs {
   neuterated: string;
 }
 
+@Table({ tableName: 'dogs' })
 export class Dog extends Model<Dog, DogCreationAttrs> {
   @ApiProperty({ example: '1', description: 'Uniq ID' })
   @Column({

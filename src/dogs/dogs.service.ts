@@ -7,31 +7,31 @@ import { CreateDogDto } from './dto/create-dog.dto';
 @Injectable()
 export class DogsService {
   constructor(
-    @InjectModel(Dog) private dogsRepository: typeof Dog,
+    @InjectModel(Dog) private dogRepository: typeof Dog,
     private fileService: FilesService,
   ) {}
 
   async create(dto: CreateDogDto, images): Promise<Dog> {
     const fileNames = await this.fileService.createFiles(images);
-    const dog = await this.dogsRepository.create({ ...dto, images: fileNames });
+    const dog = await this.dogRepository.create({ ...dto, images: fileNames });
     return dog;
   }
 
   async getAll(): Promise<Dog[]> {
-    return await this.dogsRepository.findAll();
+    return await this.dogRepository.findAll();
   }
 
   async getById(id: number): Promise<Dog> {
-    return await this.dogsRepository.findByPk(id);
+    return await this.dogRepository.findByPk(id);
   }
 
   // TODO Update images
   async update(id: number, dto: CreateDogDto): Promise<Dog> {
-    await this.dogsRepository.update(dto, { where: { id } });
-    return await this.dogsRepository.findByPk(id);
+    await this.dogRepository.update(dto, { where: { id } });
+    return await this.dogRepository.findByPk(id);
   }
 
   async delete(id: number) {
-    return await this.dogsRepository.destroy({ where: { id } });
+    return await this.dogRepository.destroy({ where: { id } });
   }
 }

@@ -10,12 +10,13 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FilesInterceptor } from '@nestjs/platform-express';
-import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/auth/roles-auth.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
 import { DogsService } from './dogs.service';
 import { CreateDogDto } from './dto/create-dog.dto';
 
+@ApiTags('Dogs')
 @Controller('dogs')
 export class DogsController {
   constructor(private dogsService: DogsService) {}
@@ -32,7 +33,7 @@ export class DogsController {
 
   @ApiOperation({ summary: 'Get all dogs' })
   @ApiResponse({ status: 200, type: [CreateDogDto] })
-  @Get()
+  @Get('/')
   getAll() {
     return this.dogsService.getAll();
   }
