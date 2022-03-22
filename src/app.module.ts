@@ -11,6 +11,7 @@ import { PostsModule } from './posts/posts.module';
 import { Post } from './posts/posts.model';
 import { FilesModule } from './files/files.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { DogsModule } from './dogs/dogs.module';
 import * as path from 'path';
 
 @Module({
@@ -39,6 +40,7 @@ import * as path from 'path';
     AuthModule,
     PostsModule,
     FilesModule,
+    DogsModule,
   ],
 })
 export class AppModule {}

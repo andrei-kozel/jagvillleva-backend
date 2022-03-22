@@ -21,4 +21,14 @@ export class FilesService {
       );
     }
   }
+
+  async createFiles(files): Promise<string[]> {
+    const result: string[] = [];
+    files.forEach(async (file) => {
+      const fileName = await this.createFile(file);
+      result.push(fileName);
+    });
+
+    return result;
+  }
 }
